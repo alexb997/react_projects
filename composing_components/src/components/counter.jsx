@@ -1,19 +1,13 @@
 import React, { Component } from 'react'
 
 class Counter extends React.Component {
-    state = {
-        value: this.props.counter.value
-    };
-
-    handleIncrement = () => {
-        this.setState({ value: this.state.value + 1 }) // makes react look for changes in state.
-    }
+    // using controlled component. (it doesn't has it's own local storage, it gets data from it's parent component)
 
     render() {
         return (<div>
             <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
             <button
-                onClick={this.handleIncrement}
+                onClick={() => this.props.onIncrement(this.props.counter)}
                 className="btn btn-secondary btn-sm m-2"
             >
                 Increment
@@ -29,12 +23,12 @@ class Counter extends React.Component {
 
     getBadgeClasses() {
         let classes = "badge m-2 badge-";
-        classes += (this.state.value === 0) ? "warning" : "primary";
+        classes += (this.props.counter.value === 0) ? "warning" : "primary";
         return classes;
     }
 
     formatCount() {
-        const { value: count } = this.state;
+        const { value: count } = this.props.counter;
         return count === 0 ? 'Zero' : count;
     };
 }

@@ -16,6 +16,7 @@ class Counters extends React.Component {
             return c;
         });
         this.setState({ counters });
+        // local state isn't updated, thats why we need a single source of truth.
     };
     handleDelete = (counterId) => {
         console.log("Event handler called", counterId);
