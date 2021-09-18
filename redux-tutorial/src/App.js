@@ -5,6 +5,7 @@ import './App.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { updateUser,apiRequest } from './actions/user-actions';
+import { createSelector } from 'reselect';
 
 class App extends Component {
   constructor(props) {
@@ -43,15 +44,23 @@ class App extends Component {
   };
 }
 
-const mapStateProps = (state,props) =>{
-  
-  return {
-    products: state.products,
-    user: state.user,
-    userPlusProp: '${state.user} ${props.aRandomProps}'
-  }
-  
-};
+const productsSelector = createSelector(
+  state=> state.products,
+  products =>products
+);
+const userSelector = createSelector(
+  state=> state.user,
+  user =>user
+);
+
+const mapStateProps = createSelector(
+  productsSelector,
+  userSelector,
+  (products,user) =>({
+    products,
+    user
+  })
+);
 
 const mapActionsToProps = {
   onUpdateUser: updateUser,
