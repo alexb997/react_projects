@@ -1,9 +1,20 @@
 import logo from './logo.svg';
+import { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
+import { connect } from 'react-redux';
+import { updateUser } from './actions/user-actions';
+
+class App extends Component {
+   render (){
+     constructor(props){
+       super(props);
+       this.updateUser = this.onUpdateUser.bind(this);
+     }
+     onUpdateUser(){
+       this.props.onUpdateUser('Sammy');
+     }
+     return (<div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -18,8 +29,21 @@ function App() {
           Learn React
         </a>
       </header>
+      <div onClick={this.onUpdateUser}>
+        Update user
+      </div>
     </div>
-  );
+    )
+  };
 }
 
-export default App;
+const mapStateProps = state =>({
+  products: state.products,
+  user: state.user
+});
+
+const mapActionsToProps ={
+  onUpdateUser: updateUser
+}
+
+export default connect(mapStateProps)(App);
