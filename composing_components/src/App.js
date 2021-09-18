@@ -11,6 +11,17 @@ class App extends React.Component {
             { id: 4, value: 0 },
         ]
     };
+
+    constructor(){//this method can be called only when a componet is rendered and placed into the DOM
+        super();
+        console.log('App - Constructor');
+    }
+
+    componentDidMount(){//this method is called after the component is rendered into the DOM
+        // perfect for Ajax calls
+        console.log('App - Mounted');
+    }
+
     handleReset = () => {
         const counters = this.state.counters.map(c => {
             c.value = 0;
@@ -30,6 +41,7 @@ class App extends React.Component {
         this.setState({ counters });
     };
     render() {
+        console.log("App-Rendered");
         return <React.Fragment>
             <NavBar totalCounters={this.state.counters.filter(c => c.value > 0).length} />;
             <main className="container">
