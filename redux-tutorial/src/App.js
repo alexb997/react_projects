@@ -6,14 +6,14 @@ import { connect } from 'react-redux';
 import { updateUser } from './actions/user-actions';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.onUpdateUser = this.onUpdateUser.bind(this);
+  };
+  onUpdateUser() {
+    this.props.onUpdateUser('Sammy');
+  };
    render (){
-     constructor(props){
-       super(props);
-       this.updateUser = this.onUpdateUser.bind(this);
-     }
-     onUpdateUser(){
-       this.props.onUpdateUser('Sammy');
-     }
      return (<div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -32,6 +32,7 @@ class App extends Component {
       <div onClick={this.onUpdateUser}>
         Update user
       </div>
+      {this.props.user};
     </div>
     )
   };
@@ -44,6 +45,6 @@ const mapStateProps = state =>({
 
 const mapActionsToProps ={
   onUpdateUser: updateUser
-}
+};
 
-export default connect(mapStateProps)(App);
+export default connect(mapStateProps,mapActionsToProps)(App);
