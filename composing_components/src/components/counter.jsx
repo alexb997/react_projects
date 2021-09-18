@@ -4,6 +4,7 @@ class Counter extends React.Component {
     // using controlled component. (it doesn't has it's own local storage, it gets data from it's parent component)
 
     render() {
+        console.log('Counter-Rendered');
         return (<div>
             <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
             <button
