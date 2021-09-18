@@ -12,6 +12,12 @@ class Counter extends React.Component {
         // }
     }
 
+    componentWillUnmount(){
+        //called just before a component is unmounted
+        console.log('Counter - Unmount')
+        //opportunity to clean up. (if have timers or listeners, otherwise we can end up with memory leaks)
+    }
+
     render() {
         console.log('Counter-Rendered');
         return (<div>
