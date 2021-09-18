@@ -5,7 +5,7 @@ export const SHOW_ERROR = 'users:showError';
 
 export function updateUser(newUser){
     return{
-        type: UPDATE_USER,
+        type: API_REQUEST_SUCCES,
         payload: {
             user: newUser
         }
@@ -14,19 +14,27 @@ export function updateUser(newUser){
 
 export function showError(){
     return {
-        type: SHOW_ERROR,
+        type: API_REQUEST_ERROR,
         payload: {
             user:'ERROR!'
         }
     }
 }
 
+export function onRequest(){
+    return{
+        type: API_REQUEST_REQUEST
+    }
+}
+
 export function apiRequest(){
     return dispatch => {
+        dispatch(requestMade());
         $.ajax({
             url: 'http://google.com',
-            succes(){
+            succes(response){
                 console.log('SUCCES');
+                dispatch(updateUser(response.newUser));
             },
             error(){
                 console.log('ERROR');
