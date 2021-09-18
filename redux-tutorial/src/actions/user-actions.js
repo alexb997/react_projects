@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 export const UPDATE_USER = 'users:updateUser';
 
 export function updateUser(newUser){
@@ -7,4 +9,18 @@ export function updateUser(newUser){
             user: newUser
         }
     }
+}
+
+export function apiRequest(){
+    return dispatch => {
+        $.ajax({
+            url: 'http://google.com',
+            succes(){
+                console.log('SUCCES');
+            },
+            error(){
+                console.log('ERROR');
+            }
+        })
+    };
 }

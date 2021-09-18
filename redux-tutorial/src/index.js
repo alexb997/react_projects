@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import thunk from 'redux-thunk';
 import { applyMiddleware,compose,combineReducers,createStore } from 'redux';
 import { Provider } from 'react-redux';
 import productsReducer from './reducers/products-reducer';
@@ -15,6 +16,7 @@ const allReducers=combineReducers({
 });
 
 const allStoreEnhancers = compose (
+  applyMiddleware(thunk),
   window.devToolsExtension && window.devToolsExtension()
 );
 
