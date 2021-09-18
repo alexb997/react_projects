@@ -14,6 +14,8 @@ class App extends Component {
     this.props.onUpdateUser(event.target.value);
   };
    render (){
+    console.log(this.props);
+
      return (<div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -36,10 +38,15 @@ class App extends Component {
   };
 }
 
-const mapStateProps = state =>({
-  products: state.products,
-  user: state.user
-});
+const mapStateProps = (state,props) =>{
+  
+  return {
+    products: state.products,
+    user: state.user,
+    userPlusProp: '${state.user} ${props.aRandomProps}'
+  }
+  
+};
 
 const mapActionsToProps ={
   onUpdateUser: updateUser
