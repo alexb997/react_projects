@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import { Component } from 'react';
 import './App.css';
 
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { updateUser } from './actions/user-actions';
 
@@ -14,8 +15,6 @@ class App extends Component {
     this.props.onUpdateUser(event.target.value);
   };
    render (){
-    console.log(this.props);
-
      return (<div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -48,8 +47,11 @@ const mapStateProps = (state,props) =>{
   
 };
 
-const mapActionsToProps ={
-  onUpdateUser: updateUser
+const mapActionsToProps = (dispatch,props) =>{
+  console.log(props);
+  return bindActionCreators({
+    onUpdateUser: updateUser
+  },dispatch);
 };
 
 export default connect(mapStateProps,mapActionsToProps)(App);
