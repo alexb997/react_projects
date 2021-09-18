@@ -10,6 +10,10 @@ function productsReducer(state =[], action){
   return state;
 }
 function userReducer(state =[], action){
+  switch(action.type){
+    case 'updateUser':
+      return action.payload;
+  }
   return state;
 }
 const allReducers=combineReducers({
@@ -27,6 +31,15 @@ const store = createStore(
 );
 
 console.log(store.getState());
+
+const updateUserAction ={
+  type: 'updateUser',
+  payload: {
+    user: 'John'
+  }
+};
+
+store.dispatch(updateUserAction);
 
 ReactDOM.render(
   <React.StrictMode>
