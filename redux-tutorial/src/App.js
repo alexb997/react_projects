@@ -12,7 +12,9 @@ class App extends Component {
     this.onUpdateUser = this.onUpdateUser.bind(this);
   };
   componentDidMount(){
-    this.props.onApiRequest();
+    setTimeout(()=>{
+      this.props.onApiRequest();
+    },1500)
   }
 
   onUpdateUser(event) {
