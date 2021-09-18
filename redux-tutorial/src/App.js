@@ -54,4 +54,9 @@ const mapActionsToProps = (dispatch,props) =>{
   },dispatch);
 };
 
-export default connect(mapStateProps,mapActionsToProps)(App);
+const mergeProps =(propsFromState,propsFromDispatch,ownProps) => {
+  console.log(propsFromState,propsFromDispatch,ownProps)
+  return {};
+}
+
+export default connect(mapStateProps,mapActionsToProps,mergeProps)(App);
