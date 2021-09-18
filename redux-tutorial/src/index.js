@@ -4,7 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import {combineReducers,createStore} from 'redux';
+import { combineReducers,createStore } from 'redux';
+import { Provider } from 'react';
 
 function productsReducer(state =[], action){
   return state;
@@ -31,9 +32,9 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
