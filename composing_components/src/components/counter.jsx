@@ -3,6 +3,15 @@ import React, { Component } from 'react'
 class Counter extends React.Component {
     // using controlled component. (it doesn't has it's own local storage, it gets data from it's parent component)
 
+    componentDidUpdate(prevProps,prevState){
+        //used to compare the new state with old state, or new props with old props. Even a ajax request to get new data from server.
+        console.log('prevProps',prevProps);
+        console.log('prevState',prevState);
+        // if(prevProps.counter.value !== this.props.counter.value){
+        //     //here we can decide if to make a ajax call based on the changes on props and state objects.
+        // }
+    }
+
     render() {
         console.log('Counter-Rendered');
         return (<div>
