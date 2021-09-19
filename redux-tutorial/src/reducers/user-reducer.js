@@ -1,10 +1,10 @@
-import { API_REQUEST_ERROR, API_REQUEST_SUCCES } from "../actions/user-actions";
+import { SHOW_ERROR, UPDATE_USER } from "../actions/user-actions";
 
 export default function userReducer(state =[], {type,payload}){
   switch(type){
-     case API_REQUEST_SUCCES:
+     case UPDATE_USER:
        return payload.user;
-     case API_REQUEST_ERROR:
+     case SHOW_ERROR:
        return payload.user;
      default:
        return state;
