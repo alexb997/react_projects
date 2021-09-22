@@ -32,7 +32,7 @@ const courses =[
 
 
 
-function App() {
+const App=() => {
   return (
     <div>
       <h1>List of Courses</h1>
