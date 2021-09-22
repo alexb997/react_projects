@@ -1,5 +1,6 @@
 import CoursesList from "./CoursesList";
 import {useState} from 'react';
+import Search from "./search";
 
 const courses =[
   {
@@ -35,9 +36,8 @@ const App = () => {
 
   const [searchText, setSearchText]=useState('');
 
-  const handleSearchInputChange= event => {
+  const handleSearch = event => {
     setSearchText(event.target.value);
-    console.log(searchText);
   }
 
   const filteredCourses = courses.filter( course => {
@@ -49,10 +49,7 @@ const App = () => {
       <h1>List of Courses</h1>
       <hr />
 
-      <label htmlFor="searchInput"></label>
-        <input id="searchInput" type="text" 
-        onChange={handleSearchInputChange} 
-        />
+      <Search onSearch={handleSearch}/>
 
       <CoursesList courses={filteredCourses}/>
     </div>
