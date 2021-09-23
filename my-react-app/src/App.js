@@ -1,5 +1,5 @@
 import CoursesList from "./CoursesList";
-import {useState, useEffect} from 'react';
+import {useState, useEffect,useReducer} from 'react';
 import Search from "./search";
 
 const courses_data =[
@@ -32,9 +32,21 @@ const courses_data =[
   }
 ]
 
+const coursesReducer = (state,action) =>{
+  switch(action.type) {
+    case 'SET_COURSES':
+      return action.payload;
+    default:
+      return new Error();
+  }
+};
+
 const App = () => {
 
-  const [courses, setCourses] =useState([]);
+  const [courses, dispatchCourses] = useReducer(
+    coursesReducer,
+    []
+  );
   const [isLoading, setIsLoading] =useState(false);
 
   const [searchText, setSearchText]=useState(
@@ -56,7 +68,10 @@ const App = () => {
   useEffect(()=>{
     setIsLoading(true);
     getCoursesAsync().then(result => {
-      setCourses(result.courses);
+      dispatchCourses({
+        type: 'SET_COURSES',
+        payload: result.courses
+      });
       setIsLoading(false);
     })
   },[]);
