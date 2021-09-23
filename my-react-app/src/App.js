@@ -2,7 +2,7 @@ import CoursesList from "./CoursesList";
 import {useState, useEffect} from 'react';
 import Search from "./search";
 
-const courses =[
+const courses_data =[
   {
     id:1,
     title: "React - The Complete Guide (incl Hooks, React Router, Redux)",
@@ -34,6 +34,9 @@ const courses =[
 
 const App = () => {
 
+  const [courses, setCourses] =useState([]);
+  const [isLoading, setIsLoading] =useState(false);
+
   const [searchText, setSearchText]=useState(
     localStorage.getItem('searchText') || ''
     );
@@ -41,6 +44,22 @@ const App = () => {
   const handleSearch = event => {
     setSearchText(event.target.value);
   }
+
+  const getCoursesAsync = () => new Promise( 
+    resolve => 
+       setTimeout(
+         () => resolve({courses: courses_data}),
+         2000
+       )
+    );
+
+  useEffect(()=>{
+    setIsLoading(true);
+    getCoursesAsync().then(result => {
+      setCourses(result.courses);
+      setIsLoading(false);
+    })
+  },[]);
 
   useEffect(()=>{
     localStorage.setItem('searchText',searchText);
@@ -56,8 +75,12 @@ const App = () => {
       <hr />
 
       <Search value={searchText} onSearch={handleSearch}/>
-
-      <CoursesList courses={filteredCourses}/>
+      {isLoading ?(
+        <p>Loading Courses...</p>
+      ):(
+        <CoursesList courses={filteredCourses}/>
+      )}
+      
     </div>
   );
 }
