@@ -36,10 +36,6 @@ const coursesReducer = (state,action) =>{
   switch(action.type) {
     case 'SET_COURSES':
       return action.payload;
-    case 'REMOVE_COURSE':
-      return state.filter(
-        course=> action.payload.id !== course.id
-      )
     default:
       return new Error();
   }
@@ -59,13 +55,6 @@ const App = () => {
 
   const handleSearch = event => {
     setSearchText(event.target.value);
-  }
-
-  const handleRemoveCourse = (course) =>{
-    dispatchCourses({
-      type:'REMOVE_COURSE',
-      payload: course
-    });
   }
 
   const getCoursesAsync = () => new Promise( 
@@ -104,7 +93,7 @@ const App = () => {
       {isLoading ?(
         <p>Loading Courses...</p>
       ):(
-        <CoursesList courses={filteredCourses} handleRemoveCourse={handleRemoveCourse}/>
+        <CoursesList courses={filteredCourses}/>
       )}
       
     </div>

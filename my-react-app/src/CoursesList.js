@@ -1,4 +1,4 @@
-const CoursesList = ({courses, handleRemoveCourse}) => {
+const CoursesList = ({courses}) => {
     return courses.map((course)=>{
        return (
         <div key= {course.id}>
@@ -16,12 +16,6 @@ const CoursesList = ({courses, handleRemoveCourse}) => {
               </span>
               <span>
                 | Rating: {course.rating}
-              </span>
-              <br/><br/>
-              <span>
-                <button type="button" onClick={()=>handleRemoveCourse(course)}>
-                  Remove
-                </button>
               </span>
               <br/><br/>
         </div>
